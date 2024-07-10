@@ -1,18 +1,17 @@
-import Cookies from "js-cookie";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
+const ProtectedRoute = () => {
+  const { pathname } = useLocation();
+  const token = Cookies.get("token");
 
-export default function ProtectedRouter() {
-  const { pathname } = useLocation()
-  const token = Cookies.get("token")
-  
-  const authProtected = ["/login", "register"]
+  const authProtected = ["/login", "/register"];
   const protectedByToken = [
     "/profile",
-    "edit-profile",
+    "/profile/edit",
     "history-borrow",
-    "/dashboard"
-  ]
+    "/dashboard",
+  ];
   const adminProtected = ["/dashboard"];
   const userProtected = ["/history-borrow"];
 
@@ -26,5 +25,7 @@ export default function ProtectedRouter() {
     // TODO: Add protected by role (admin & user)
   }
 
-  return <Outlet/>
-}
+  return <Outlet />;
+};
+
+export default ProtectedRoute;
