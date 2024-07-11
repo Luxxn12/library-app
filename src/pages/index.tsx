@@ -4,6 +4,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getBooks } from "@/utils/apis/books";
+import { useToken } from "@/utils/contexts/token";
 import { IBook } from "@/utils/types/books";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -40,6 +41,7 @@ const dataUser = [
 ];
 
 export default function Index() {
+  const { user } = useToken();
   const [data, setData] = useState<IBook[]>([]);
   const [isLoading, setLoading] = useState(true);
   async function fetchData() {
@@ -74,14 +76,20 @@ export default function Index() {
             </text>
           </div>
           <div className="pt-7">
-            <Link to={'/login'}>
-              <Button>Go Premium</Button>
+            {user?.role === "user" ? (
+              <Link to={"/cart"}>
+              <Button>Go Cart</Button>
             </Link>
+            ) : <Link to={"/login"}>
+            <Button>Go Premium</Button>
+          </Link>}
           </div>
         </div>
         <div>
           <div className="mb-5">
-            <text className="text-black text-xl dark:text-white ">Populer Authors</text>
+            <text className="text-black text-xl dark:text-white ">
+              Populer Authors
+            </text>
           </div>
           {dataUser.map((v, i) => {
             return (
