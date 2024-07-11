@@ -12,8 +12,8 @@ const ProtectedRoute = () => {
     "history-borrow",
     "/dashboard",
   ];
-  const adminProtected = ["/dashboard"];
-  const userProtected = ["/history-borrow"];
+  // const adminProtected = ["/dashboard"];
+  // const userProtected = ["/history-borrow"];
 
   if (authProtected.includes(pathname)) {
     if (token) return <Navigate to="/" />;

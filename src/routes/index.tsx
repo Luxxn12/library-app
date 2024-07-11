@@ -8,7 +8,9 @@ import EditProfilePage from "@/pages/users/edit-profile";
 import BooksPage from "@/pages/books";
 import DetailBookPage from "@/pages/books/detail";
 import NotFound from "@/pages/not-found";
-import History from "@/pages/borrow/history";
+import HistoryPage from "@/pages/borrow/history";
+import CartPage from "@/pages/cart";
+import AdminPage from "@/pages/admin";
 
 export default function Routes() {
   const router = createBrowserRouter([
@@ -53,13 +55,18 @@ export default function Routes() {
         {
           path: "/history-borrow",
           loader: () => "History Borrow | Library App",
-          element: <History />,
+          element: <HistoryPage />,
         },
-        // {
-        //   path: "/dashboard",
-        //   loader: () => "Dashboard | Library App",
-        //   element: <BookDetail />, // TODO: Change to admin dashboard
-        // },
+        {
+          path: "/cart",
+          loader: () => "Cart | Library App",
+          element: <CartPage />,
+        },
+        {
+          path: "/dashboard",
+          loader: () => "Dashboard | Library App",
+          element: <AdminPage />, 
+        },
         {
           path: "*",
           loader: () => "Not Found | Library App",
