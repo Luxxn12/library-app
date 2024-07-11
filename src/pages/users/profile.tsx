@@ -62,7 +62,7 @@ export default function Profile() {
             <div>
               <div className="flex space-x-4 pb-4" data-testid="books-new">
                 {isLoading ? (
-                  [...Array(5).keys()].map((key) => <BookCardLoading key={key} />)
+                  [...Array(3).keys()].map((key) => <BookCardLoading key={key} />)
                 ) : (
                   <>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-center ">

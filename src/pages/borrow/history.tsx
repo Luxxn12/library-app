@@ -40,7 +40,7 @@ export default function History() {
     <Layout>
       <div className="grid grid-cols-2 md:grid-cols-3  m-0 lg:m-5 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-center">
         {isLoading
-          ? [...Array(9).keys()].map(renderLoadingrenderBorrow)
+          ? [...Array(3).keys()].map(renderLoadingrenderBorrow)
           : borrows.map(renderBorrow)}
       </div>
     </Layout>
