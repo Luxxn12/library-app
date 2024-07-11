@@ -51,11 +51,11 @@ export default function Profile() {
       {user?.role == 'user' && (
         <>
           <div className="flex justify-between my-9 w-full items-center container">
-            <p className="font-semibold text-black text-lg tracking-wider">
+            <p className="font-semibold text-black dark:text-white text-lg tracking-wider">
               Recently Borrowed Book
             </p>
             <Link className="text-sm tracking-wide" to="/history-borrow">
-              <text className="text-black">See more</text>
+              <text className="text-black  dark:text-white ">See more</text>
             </Link>
           </div>
           <div className="flex justify-center mt-4">
