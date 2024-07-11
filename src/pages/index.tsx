@@ -12,30 +12,30 @@ const dataUser = [
   {
     id: 1,
     name: "John Doe",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    avatar: "https://i.pravatar.cc/1000?img=3",
     time: "21 Read this week",
-    nilai: "8.90",
+    nilai: "9.90",
   },
   {
     id: 2,
     name: "Doni Setiawan",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    avatar: "https://i.pravatar.cc/1000?img=6",
     time: "41 Read this week",
-    nilai: "8.90",
+    nilai: "8.50",
   },
   {
     id: 3,
     name: "Iqbal Ramadan",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    avatar: "https://i.pravatar.cc/1000?img=11",
     time: "11 Read this week",
-    nilai: "8.90",
+    nilai: "8.00",
   },
   {
     id: 4,
     name: "Joni Iskandar",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    avatar: "https://i.pravatar.cc/1000?img=15",
     time: "11 Read this week",
-    nilai: "8.90",
+    nilai: "7.90",
   },
 ];
 
@@ -98,7 +98,7 @@ export default function Index() {
                       <text className=" text-xs text-gray-400">{v.time}</text>
                     </div>
                   </div>
-                  <text className="text-red-500">8.91</text>
+                  <text className="text-red-500">{v.nilai} </text>
                 </div>
                 <Separator className="my-2 bg-gray-300 dark:bg-gray-600" />
               </div>

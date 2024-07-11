@@ -1,13 +1,11 @@
 import { BookCard, BookCardLoading } from "@/components/book-card";
 import Layout from "@/components/layout";
 import { getBorrows } from "@/utils/apis/borrows";
-import { useToken } from "@/utils/contexts/token";
 import { IBorrow } from "@/utils/types/borrows";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function History() {
-  const { user } = useToken();
   const [isLoading, setLoading] = useState(true);
 
   const [borrows, setBorrows] = useState<IBorrow[]>([]);

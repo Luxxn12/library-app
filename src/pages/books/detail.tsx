@@ -1,15 +1,28 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Layout from "@/components/layout";
 
 import { IBook } from "@/utils/types/books";
 import { getDetailBook } from "@/utils/apis/books";
-import { Separator } from "@/components/ui/separator";
+import useCartStore from "@/utils/states/borrows";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { useToken } from "@/utils/contexts/token";
 export default function DetailBook() {
-  const [isLoading, setLoading] = useState(true);
+  const { addItem, cart } = useCartStore((state) => state);
+  const { user } = useToken();
+  const [ setLoading] = useState(true);
   const [data, setData] = useState<IBook>();
   const params = useParams();
+
+  const isInCart = useMemo(() => {
+    const checkCart = cart.find((item) => item.id === +params.id_book!);
+
+    if (checkCart) return true;
+
+    return false;
+  }, [cart]);
 
   useEffect(() => {
     fetchData();
@@ -17,15 +30,17 @@ export default function DetailBook() {
 
   async function fetchData() {
     try {
-      setLoading(true);
       const response = await getDetailBook(+params.id_book!);
 
       setData(response.payload);
     } catch (error) {
       alert(error);
-    } finally {
-      setLoading(false);
-    }
+    } 
+  }
+
+  function handleBorrowBook() {
+    addItem(data!);
+    toast.success("Book has been added to cart");
   }
 
   return (
@@ -40,24 +55,36 @@ export default function DetailBook() {
         </figure>
         <div className="flex flex-col gap-3 w-full container">
           <div className="flex flex-col gap-2">
-            <p className="font-bold text-2xl tracking-wide text-red-700">
-              {data?.title}
+            <p className="font-bold text-2xl tracking-wide text-black">
+              {data?.title.toUpperCase()}
             </p>
-            <p className="font-light text-sm text-muted-foreground text-red-700">
+            <p className="font-light text-sm text-muted-foreground text-gray-600">
               by {data?.author}
             </p>
             <Link
-              className="text-red-700"
+              className="text-gray-600"
               to={"/"}
               data-testid={data?.category}
             >
               {data?.category}
             </Link>
+
           </div>
-          <Separator className="my-4" />
-          <div className="flex-grow text-red-700">
+          <div className="flex-grow text-black">
+            <text className="font-bold">Description:</text>
             <p>{data?.description}</p>
           </div>
+
+          {user?.role === "user" ? (
+            <Button
+              size="lg"
+              className="w-full"
+              onClick={() => handleBorrowBook()}
+              disabled={isInCart}
+            >
+              {isInCart ? "In Cart" : "Borrow"}
+            </Button>
+          ) : null}
         </div>
       </div>
     </Layout>
