@@ -1,12 +1,13 @@
 import { IResponse } from "@/utils/types/api";
-import { IUser, ProfileSchema } from "../types/users";
+import { ProfileType, ProfileSchema } from "../types/users";
 import axiosWithConfig from "./axios-with-config";
+import { checkProperty, valueFormatData } from "../functions";
 
 export const getProfile = async () => {
   try {
     const response = await axiosWithConfig.get("/users");
 
-    return response.data as IResponse<IUser>;
+    return response.data as IResponse<ProfileType>;
   } catch (error: any) {
     const { message } = error.response.data;
 
@@ -16,7 +17,16 @@ export const getProfile = async () => {
 
 export const updateProfile = async (body: ProfileSchema) => {
   try {
-    const response = await axiosWithConfig.put("/users", body);
+    const formData = new FormData();
+    let key: keyof typeof body;
+
+    for (key in body) {
+      if (checkProperty(body[key])) {
+        formData.append(key, valueFormatData(body[key]));
+      }
+    }
+
+    const response = await axiosWithConfig.put("/users", formData);
 
     return response.data as IResponse<undefined>;
   } catch (error: any) {

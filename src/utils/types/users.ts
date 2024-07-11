@@ -1,7 +1,6 @@
 import * as z from "zod";
+
 import { ACCEPTED_IMAGE_TYPES, MAX_MB, MAX_UPLOAD_SIZE } from "../const";
-
-
 
 export const profileSchema = z.object({
   email: z
