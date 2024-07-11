@@ -108,12 +108,12 @@ export default function Index() {
       </div>
       <div className="pt-10">
         <div className="px-6 container flex justify-center">
-          <text className="text-black font-light text-3xl">
+          <text className="text-black dark:text-white font-light text-3xl">
             Browse huge library filled
           </text>
         </div>
         <div className="px-6 container flex justify-center">
-          <text className="text-black font-light text-3xl">
+          <text className="text-black dark:text-white font-light text-3xl">
             with world best sellers
           </text>
         </div>
