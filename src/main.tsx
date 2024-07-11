@@ -8,7 +8,7 @@ import { TokenProvider } from "@/utils/contexts/token";
 import { Toaster } from "sonner";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+  <ThemeProvider >
     <React.StrictMode>
       <TokenProvider>
         <App />

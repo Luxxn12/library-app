@@ -31,6 +31,6 @@ export interface IBorrow {
   borrow_date: string;
   due_date: string;
   return_date: string | null;
-  book: Pick<IBook, "id" | "title" | "cover_image">;
+  book: IBook
   user: ProfileType;
 }

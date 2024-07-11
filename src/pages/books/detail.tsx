@@ -12,7 +12,6 @@ import { useToken } from "@/utils/contexts/token";
 export default function DetailBook() {
   const { addItem, cart } = useCartStore((state) => state);
   const { user } = useToken();
-  const [ setLoading] = useState(true);
   const [data, setData] = useState<IBook>();
   const params = useParams();
 
@@ -30,12 +29,12 @@ export default function DetailBook() {
 
   async function fetchData() {
     try {
-      const response = await getDetailBook(+params.id_book!);
+      const response = await getDetailBook(params.id_book!);
 
       setData(response.payload);
     } catch (error) {
       alert(error);
-    } 
+    }
   }
 
   function handleBorrowBook() {
@@ -55,7 +54,7 @@ export default function DetailBook() {
         </figure>
         <div className="flex flex-col gap-3 w-full container">
           <div className="flex flex-col gap-2">
-            <p className="font-bold text-2xl tracking-wide text-black">
+            <p className="font-bold text-2xl tracking-wide text-black dark:text-white">
               {data?.title.toUpperCase()}
             </p>
             <p className="font-light text-sm text-muted-foreground text-gray-600">
@@ -70,20 +69,22 @@ export default function DetailBook() {
             </Link>
 
           </div>
-          <div className="flex-grow text-black">
+          <div className="flex-grow text-black dark:text-white">
             <text className="font-bold">Description:</text>
             <p>{data?.description}</p>
           </div>
 
           {user?.role === "user" ? (
-            <Button
-              size="lg"
-              className="w-full"
-              onClick={() => handleBorrowBook()}
-              disabled={isInCart}
-            >
-              {isInCart ? "In Cart" : "Borrow"}
-            </Button>
+            <div className="mt-4">
+              <Button
+                size="lg"
+                className="w-full"
+                onClick={() => handleBorrowBook()}
+                disabled={isInCart}
+              >
+                {isInCart ? "In Cart" : "Borrow"}
+              </Button>
+            </div>
           ) : null}
         </div>
       </div>

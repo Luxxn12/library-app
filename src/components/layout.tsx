@@ -11,7 +11,7 @@ function Layout(props: Props) {
   useTitle(loaderData);
   return (
     <>
-      <div className="w-full  h-dvh bg-white  overflow-auto font-roboto">
+      <div className="w-full  h-dvh bg-white dark:bg-black text-gray-900 dark:text-white  overflow-auto font-roboto">
         <div className=" h-full overflow-auto flex flex-col mx-auto">
           <Navbar />
           <div className="w-full flex-1 flex flex-col relative">
