@@ -81,7 +81,7 @@ export default function Index() {
         </div>
         <div>
           <div className="mb-5">
-            <text className="text-black text-xl">Populer Authors</text>
+            <text className="text-black text-xl dark:text-white ">Populer Authors</text>
           </div>
           {dataUser.map((v, i) => {
             return (
