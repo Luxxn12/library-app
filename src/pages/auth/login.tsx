@@ -11,7 +11,7 @@ import { userLogin } from "@/utils/apis/auth";
 import Layout from "@/components/layout";
 import { Form } from "@/components/ui/form";
 import { CustomFormField } from "@/components/custom-formfield";
-import { ButtonLogin } from "@/components/ui/button-login";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   const { changeToken } = useToken();
@@ -38,6 +38,7 @@ export default function Login() {
 
   return (
     <Layout>
+      <div className="flax max-h-full w-full mt-10">
         <div className="m-auto w-full max-w-md space-y-6 ">
           <div>
             <h1 className="text-2xl text-gray-900 font-bold tracking-tight text-foreground sm:text-3xl">
@@ -83,7 +84,7 @@ export default function Login() {
                 )}
               </CustomFormField>
               <div className="pt-5">
-                <ButtonLogin
+                <Button
                   data-testid="btn-submit"
                   type="submit"
                   className="w-full"
@@ -91,7 +92,7 @@ export default function Login() {
                   aria-disabled={form.formState.isSubmitting}
                 >
                   Sign in
-                </ButtonLogin>
+                </Button>
               </div>
               <div className="text-center">
                 <text className="mt-2 text-muted-foreground">
@@ -107,6 +108,7 @@ export default function Login() {
             </form>
           </Form>
         </div>
+      </div>
     </Layout>
   );
 }
