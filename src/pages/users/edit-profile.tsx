@@ -62,7 +62,7 @@ export default function EditProfile() {
     <Layout>
       <div className="container">
         <div className="mb-5 mt-8">
-          <text className="text-2xl text-black font-bold ">EDIT PROFILE</text>
+          <text className="text-2xl text-black dark:text-white font-bold ">EDIT PROFILE</text>
         </div>
         <Form {...form}>
           <form
@@ -174,7 +174,7 @@ export default function EditProfile() {
         </Form>
         <div className="pt-5 gap-3">
           <div className="flex gap-5">
-            <Button variant="destructive" className="bg-black" onClick={() => handleDelete()}>
+            <Button variant="destructive" className="bg-gray-600" onClick={() => handleDelete()}>
               Delete Account
             </Button>
             <Button type="submit" form="form-update">

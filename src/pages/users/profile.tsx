@@ -1,6 +1,6 @@
 import { BookCard, BookCardLoading } from "@/components/book-card";
 import Layout from "@/components/layout";
-import { ButtonLogin } from "@/components/ui/button-login";
+import { Button } from "@/components/ui/button";
 import { getBorrows } from "@/utils/apis/borrows";
 import { useToken } from "@/utils/contexts/token";
 import { IBorrow } from "@/utils/types/borrows";
@@ -41,11 +41,11 @@ export default function Profile() {
               alt={`${user?.full_name}'s profile picture`}
             />
           </div>
-          <h1 className="text-2xl font-bold text-black">{user?.full_name}</h1>
+          <h1 className="text-2xl font-bold text-black dark:text-white">{user?.full_name}</h1>
           <p className="text-muted-foreground">{user?.email}</p>
-          <ButtonLogin asChild>
+          <Button asChild>
             <Link to="/edit-profile">Edit Profile</Link>
-          </ButtonLogin>
+          </Button>
         </div>
       </div>
       {user?.role == 'user' && (

@@ -42,7 +42,7 @@ export default function Register() {
       <div className="mt-5">
         <div className="m-auto w-full max-w-md space-y-6">
           <div>
-            <h1 className="text-2xl text-gray-900 font-bold tracking-tight text-foreground sm:text-3xl">
+            <h1 className="text-2xl text-gray-900 dark:text-white font-bold tracking-tight text-foreground sm:text-3xl">
               Sign up to your account
             </h1>
           </div>
@@ -161,7 +161,7 @@ export default function Register() {
                   Don't have an account?{" "}
                   <Link
                     to="/login"
-                    className="font-medium text-black hover:underline"
+                    className="font-medium text-black dark:text-gray-400 hover:underline"
                   >
                     Sign in
                   </Link>

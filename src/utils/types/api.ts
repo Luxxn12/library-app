@@ -7,12 +7,12 @@ export interface IRequest {
   page?: string | number;
 }
 
-export interface IResponse<T> {
+export interface IResponse<T = any> {
   message: string;
   payload: T;
 }
 
-export interface IPagination<T> {
+export interface IPagination<T = any> {
   currentPage: number;
   datas: T;
   totalItems: number;

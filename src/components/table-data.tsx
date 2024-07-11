@@ -34,13 +34,13 @@ export default function TableData<T>(props: Readonly<Props<T>>) {
   return (
     <div className="w-full flex flex-col items-end">
       <div className="overflow-x-auto w-full">
-        <Table className="border border-black">
-          <TableHeader className="dark:bg-red-800 ">
+        <Table className="border border-black dark:border-red-700">
+          <TableHeader className="dark:bg-red-800 bg-red-800 ">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead className="text-white"
+                    <TableHead  className="text-white"
                       aria-label={`header-${header.id}`}
                       key={header.id}
                       colSpan={header.colSpan}
@@ -62,7 +62,7 @@ export default function TableData<T>(props: Readonly<Props<T>>) {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="dark:text-white">
             {table.getRowModel().rows.map((row) => {
               return (
                 <TableRow aria-label="row" key={row.id}>

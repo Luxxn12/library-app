@@ -10,14 +10,21 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ShoppingCart } from "lucide-react";
+import { ModeToggle } from "./ui/mode-toggle";
+import { useTheme } from "./ui/theme-provider";
+import { DropdownMenuSub } from "@radix-ui/react-dropdown-menu";
 
 export default function Navbar() {
   const { token, user, changeToken } = useToken();
   const navigate = useNavigate();
+  const { setTheme } = useTheme()
 
 
   function handleLogout() {
@@ -27,16 +34,20 @@ export default function Navbar() {
   }
 
   return (
-    <header className="w-full sticky top-0 bg-white z-50" aria-label="navbar">
+    <header className="w-full sticky top-0 bg-white dark:bg-black z-50" aria-label="navbar">
       <nav className="mx-auto flex container items-center justify-between p-3 lg:px-6 [ ">
         <Link to={"/"}>
           <text className="text-red-700 font-extrabold">MYBOOK</text>
         </Link>
         <div className="flex gap-4 items-center justify-end">
+          {!token ? (
+            <ModeToggle />
+          ) : null
+          }
           <Input type="Search" placeholder="Search" />
           {user?.role === "user" ? (
             <Link to="/cart">
-              <ShoppingCart className="text-black size-8" />
+              <ShoppingCart className="text-black dark:text-white size-8" />
             </Link>
           ) : null}
           {token ? (
@@ -54,18 +65,34 @@ export default function Navbar() {
                   <span className="sr-only">Toggle user menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className=" dark:bg-white">
-                <DropdownMenuLabel className="text-black">My Account</DropdownMenuLabel>
+              <DropdownMenuContent align="end" >
+                <DropdownMenuLabel >My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator className="border-red-700" />
-                <DropdownMenuItem className="text-black" asChild>
+                <DropdownMenuItem  asChild>
                   <Link to="/profile">Profile</Link>
                 </DropdownMenuItem>
                 {user?.role === "admin" ? (
-                  <DropdownMenuItem className="text-black" asChild>
+                  <DropdownMenuItem  asChild>
                     <Link to="/dashboard">Dashboard</Link>
                   </DropdownMenuItem>
                 ) : null}
                 <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                <DropdownMenuSubTrigger  >Theme</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      System
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
                 <DropdownMenuItem className="text-red-700" onClick={() => handleLogout()}>
                   Logout
                 </DropdownMenuItem>

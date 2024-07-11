@@ -1,5 +1,4 @@
 import { addBook, deleteBook, getBooks, updateBook } from "@/utils/apis/books";
-import { IMeta } from "@/utils/types/api";
 import { BookSchema, IBook } from "@/utils/types/books";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit2, Trash2 } from "lucide-react";
@@ -18,7 +17,6 @@ export default function BooksAdmin() {
 
   const [searchValue, setSearchValue] = useState("");
   const [books, setBooks] = useState<IBook[]>([]);
-  const [meta, setMeta] = useState<IMeta>();
 
   useEffect(() => {
     fetchData();
@@ -120,15 +118,15 @@ export default function BooksAdmin() {
         setSearchValue(searchParams.get("query")!);
       }
 
-      const query = Object.fromEntries(
-        [...searchParams].filter((param) => param[0] !== "tab")
-      );
+      // const query = Object.fromEntries(
+      //   [...searchParams].filter((param) => param[0] !== "tab")
+      // );
 
       try {
-        const result = await getBooks({ ...query });
-        const { datas, ...rest } = result.payload;
+        const result = await getBooks();
+        const { datas, } = result.payload;
         setBooks(datas);
-        setMeta(rest);
+
       } catch (error) {
         toast((error as Error).message);
       }
@@ -137,18 +135,18 @@ export default function BooksAdmin() {
 
   async function onSubmit(data: BookSchema, id_book?: number) {
     try {
-      const result = id_book
+       id_book
         ? await updateBook(data, id_book)
         : await addBook(data);
-      toast.success('Success');
+      toast.success('Book saved successfully!');
     } catch (error) {
-      toast.error((error as Error).message);
+      toast.error('Error saving book: ' + (error as Error).toString());
     }
   }
 
   async function onDelete(id_book: number) {
     try {
-      const result = await deleteBook(String(id_book));
+       await deleteBook(String(id_book));
       toast.success("Delete Success");
       fetchData();
     } catch (error: any) {

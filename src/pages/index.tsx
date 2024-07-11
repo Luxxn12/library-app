@@ -62,7 +62,7 @@ export default function Index() {
     <Layout>
       <div className="grid grid-cols-1 md:grid-cols-2 container px-6 gap-10 xl:gap-20 pt-5">
         <div className=" bg-gray-800 p-8 rounded-md ">
-          <div className="text-2xl grid grid-flow-row">
+          <div className="text-2xl text-white grid grid-flow-row">
             <text>Discover libraries full of content</text>
             <text>with our annual subscription</text>
           </div>
@@ -92,7 +92,7 @@ export default function Index() {
                       <AvatarImage src={v.avatar} />
                     </Avatar>
                     <div className=" grid grid-flow-row ">
-                      <text className="text-black text-sm font-semibold">
+                      <text className="text-black dark:text-white text-sm font-semibold">
                         {v.name}
                       </text>
                       <text className=" text-xs text-gray-400">{v.time}</text>

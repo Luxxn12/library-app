@@ -1,6 +1,5 @@
 import TableData from "@/components/table-data";
 import { Input } from "@/components/ui/input";
-import { IMeta } from "@/utils/types/api";
 import { BorrowPayload, IBorrow } from "@/utils/types/borrows";
 import { ColumnDef } from "@tanstack/react-table";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -17,7 +16,7 @@ export default function BorrowsAdmin() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [borrows, setBorrows] = useState<IBorrow[]>([]);
   const [searchValue, setSearchValue] = useState("");
-  const [meta, setMeta] = useState<IMeta>();
+
 
   useEffect(() => {
     fetchData();
@@ -122,15 +121,15 @@ export default function BorrowsAdmin() {
         setSearchValue(searchParams.get("query")!);
       }
 
-      const query = Object.fromEntries(
-        [...searchParams].filter((param) => param[0] !== "tab")
-      );
+      // const query = Object.fromEntries(
+      //   [...searchParams].filter((param) => param[0] !== "tab")
+      // );
 
       try {
-        const result = await getBorrows({ ...query });
-        const { datas, ...rest } = result.payload;
+        const result = await getBorrows();
+        const { datas,  } = result.payload;
         setBorrows(datas);
-        setMeta(rest);
+        // setMeta(rest);
       } catch (error) {
         toast(((error as Error).message));
       }
@@ -138,7 +137,7 @@ export default function BorrowsAdmin() {
   }
   async function onSubmit(data: BorrowPayload, id_borrow: number) {
     try {
-      const result = await updateBorrow(data, id_borrow);
+      await updateBorrow(data, id_borrow);
       toast.success('Update Borrow Success');
     } catch (error) {
       toast.error(((error as Error).message));

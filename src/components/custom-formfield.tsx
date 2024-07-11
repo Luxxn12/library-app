@@ -59,7 +59,7 @@ export function CustomFormField<T extends FieldValues>(
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="dark:text-black">{label}</FormLabel>
+          <FormLabel >{label}</FormLabel>
           <FormControl>{children(field)}</FormControl>
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />
