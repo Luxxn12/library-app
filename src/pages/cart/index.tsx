@@ -26,7 +26,7 @@ export default function Cart() {
 
   return (
     <Layout>
-      <div className="container">
+      <div className="container mb-5">
         <div className="grid grid-cols-1 gap-6">
           <div className="bg-white rounded-lg shadow-md p-6">
             <div className="grid grid-cols-1 gap-4">
