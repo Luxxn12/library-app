@@ -9,6 +9,7 @@ import useCartStore from "@/utils/states/borrows";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useToken } from "@/utils/contexts/token";
+import { ArrowLeftIcon } from "lucide-react";
 export default function DetailBook() {
   const { addItem, cart } = useCartStore((state) => state);
   const { user } = useToken();
@@ -44,6 +45,12 @@ export default function DetailBook() {
 
   return (
     <Layout>
+      <div className="container flex h-10 items-center px-4 md:px-5">
+          <Link to={"/books"} className="inline-flex items-center gap-2">
+            <ArrowLeftIcon className="h-5 w-5" />
+            <span className="text-sm font-medium">Back</span>
+          </Link>
+        </div>
       <div className="flex flex-col md:flex-row w-full h-full py-6 px-3 gap-5 items-center container">
         <figure className="overflow-hidden shadow-md rounded-xl shadow-neutral-300  w-52 md:w-72 lg:w-96">
           <img
