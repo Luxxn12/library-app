@@ -172,13 +172,13 @@ export default function EditProfile() {
             </CustomFormField>
           </form>
         </Form>
-        <div className="pt-5 gap-3">
-          <div className="flex gap-5">
+        <div className="pt-5 gap-3 pb-5">
+          <div className="flex  gap-5">
             <Button variant="destructive" className="bg-gray-600" onClick={() => handleDelete()}>
-              Delete Account
+              Delete
             </Button>
             <Button type="submit" form="form-update">
-              Save Changes
+              Save
             </Button>
           </div>
         </div>

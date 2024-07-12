@@ -14,11 +14,11 @@ export const BookCard = (props: BookCardProps) => {
   const { data, navigate } = props;
   return (
     <Link
-      className="flex flex-col p-4 w-48 md:w-56 lg:w-64 h-fit items-center gap-3"
+      className="flex flex-col p-4 w-46 sm:w-48 md:w-56 lg:w-64 h-fit items-center gap-3"
       to={navigate}
       data-testid={props["data-testid"]}
     >
-      <figure className="overflow-hidden shadow-md rounded-xl shadow-neutral-300">
+      <figure className="overflow-hidden shadow-md rounded-xl shadow-neutral-200">
         <img
           className="h-auto w-auto rounded-xl object-cover aspect-[3/4]"
           src={data.cover_image}
