@@ -16,7 +16,7 @@ export default function Cart() {
         borrow_date: new Date().toISOString(),
       };
 
-     await postBorrow(body);
+      await postBorrow(body);
       toast.success("success");
       clearCart();
     } catch (error) {
@@ -58,8 +58,7 @@ export default function Cart() {
             <h2 className="text-xl font-bold mb-4 text-black">Summary</h2>
             <div className="grid grid-cols-2 gap-2">
               <p className="text-gray-500">Total Books:</p>
-              <p className="text-right">{cart.length}</p>
-              <p className="text-gray-500">Estimated Due Date:</p>
+              <p className="text-right  text-black">{cart.length}</p>
             </div>
           </div>
         </div>

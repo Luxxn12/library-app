@@ -39,7 +39,7 @@ export default function Register() {
 
   return (
     <Layout>
-      <div className="mt-5">
+      <div className="mt-3 container">
         <div className="m-auto w-full max-w-md space-y-6">
           <div>
             <h1 className="text-2xl text-gray-900 dark:text-white font-bold tracking-tight text-foreground sm:text-3xl">

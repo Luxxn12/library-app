@@ -116,12 +116,12 @@ export default function Index() {
       </div>
       <div className="pt-10">
         <div className="px-6 container flex justify-center">
-          <text className="text-black dark:text-white font-light text-3xl">
+          <text className="text-black dark:text-white font-light text-2xl md:text-3xl">
             Browse huge library filled
           </text>
         </div>
         <div className="px-6 container flex justify-center">
-          <text className="text-black dark:text-white font-light text-3xl">
+          <text className="text-black dark:text-white font-light text-2xl md:text-3xl">
             with world best sellers
           </text>
         </div>
@@ -130,7 +130,7 @@ export default function Index() {
             <Button>Show All</Button>
           </Link>
         </div>
-        <div className="flex container justify-center mt-4">
+        <div className="flex md:px-0 px-2 md:container justify-center mt-4">
           <div>
             <div className="flex space-x-4 pb-4" data-testid="books-new">
               {isLoading ? (

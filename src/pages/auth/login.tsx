@@ -38,7 +38,7 @@ export default function Login() {
 
   return (
     <Layout>
-      <div className="flax max-h-full w-full mt-10">
+      <div className="flax container max-h-full w-full mt-10">
         <div className="m-auto w-full max-w-md space-y-6 ">
           <div>
             <h1 className="text-2xl text-gray-900 dark:text-white font-bold tracking-tight text-foreground sm:text-3xl">

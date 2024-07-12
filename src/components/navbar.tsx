@@ -16,12 +16,14 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCartIcon } from "lucide-react";
 import { ModeToggle } from "./ui/mode-toggle";
 import { useTheme } from "./ui/theme-provider";
 import { DropdownMenuSub } from "@radix-ui/react-dropdown-menu";
+import useCartStore from "@/utils/states/borrows";
 
 export default function Navbar() {
+  const { cart } = useCartStore((state) => state)
   const { token, user, changeToken } = useToken();
   const navigate = useNavigate();
   const { setTheme } = useTheme()
@@ -46,9 +48,18 @@ export default function Navbar() {
           }
           <Input type="Search" placeholder="Search" />
           {user?.role === "user" ? (
-            <Link to="/cart">
-              <ShoppingCart className="text-black dark:text-white size-8" />
-            </Link>
+            <div className="relative inline-block">
+              <Link to="/cart">
+                <Button variant="ghost" size="icon">
+                  <ShoppingCartIcon className="h-6 w-6" />
+                </Button>
+              </Link>
+              {cart.length > 0 && (
+                <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full px-2 py-0.5 text-xs font-medium">
+                  {cart.length}
+                </div>
+              )}
+            </div>
           ) : null}
           {token ? (
             <DropdownMenu>
@@ -68,31 +79,31 @@ export default function Navbar() {
               <DropdownMenuContent align="end" >
                 <DropdownMenuLabel >My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator className="border-red-700" />
-                <DropdownMenuItem  asChild>
+                <DropdownMenuItem asChild>
                   <Link to="/profile">Profile</Link>
                 </DropdownMenuItem>
                 {user?.role === "admin" ? (
-                  <DropdownMenuItem  asChild>
+                  <DropdownMenuItem asChild>
                     <Link to="/dashboard">Dashboard</Link>
                   </DropdownMenuItem>
                 ) : null}
                 <DropdownMenuSeparator />
                 <DropdownMenuSub>
-                <DropdownMenuSubTrigger  >Theme</DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem onClick={() => setTheme("light")}>
-                      Light
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme("dark")}>
-                      Dark
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setTheme("system")}>
-                      System
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
+                  <DropdownMenuSubTrigger  >Theme</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem onClick={() => setTheme("light")}>
+                        Light
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setTheme("dark")}>
+                        Dark
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setTheme("system")}>
+                        System
+                      </DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
                 <DropdownMenuItem className="text-red-700" onClick={() => handleLogout()}>
                   Logout
                 </DropdownMenuItem>

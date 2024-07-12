@@ -42,10 +42,12 @@ export default function AllBooksPage() {
 
   return (
     <Layout>
-      <div className="grid grid-cols-2 md:grid-cols-3  m-0 lg:m-5 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-center">
+      <div className=" md:px-0 px-2 md:container">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 justify-items-center">
         {isLoading
           ? [...Array(10).keys()].map(renderLoadingBookCard)
           : books.map(renderBookCard)}
+      </div>
       </div>
     </Layout>
   );
